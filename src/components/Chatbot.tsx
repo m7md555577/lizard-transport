@@ -97,6 +97,7 @@ interface NavAction {
 interface KBEntry {
   keywords_en: string[];
   keywords_fr: string[];
+  keywords_ar?: string[];
   answer_en: string;
   answer_fr: string;
   answer_ar?: string;
@@ -362,8 +363,57 @@ const DOC_FLOW: DocStep[] = [
 // ═══════════════════════════════════════════════════════════════════════════
 const KB: KBEntry[] = [
   {
+    keywords_en: ["how are you","how're you","how you doing","you good","you ok","how is it going"],
+    keywords_fr: ["ça va","comment vas-tu","comment allez-vous","tu vas bien","vous allez bien"],
+    keywords_ar: ["شلونك","كيفك","شلونج","شخبارك","كيف حالك","كيفكم","شلونكم","اخبارك","وش اخبارك"],
+    answer_en: "😊 I'm doing great, thanks for asking! Just here ready to help with anything transport & logistics related. How about you — what can I help you with today?",
+    answer_fr: "😊 Ça va très bien, merci de demander ! Je suis là pour vous aider sur tout ce qui touche au transport et à la logistique. Et vous, qu'est-ce que je peux faire pour vous ?",
+    answer_ar: "😊 الحمدلله تمام، شكراً على سؤالك! أنا هنا جاهز أساعدك بأي شي يخص النقل واللوجستيك. وانته شلونك؟ وش تحتاج اليوم؟",
+  },
+  {
+    keywords_en: ["thank you","thanks","thx","appreciate","much appreciated","great job","well done"],
+    keywords_fr: ["merci","merci beaucoup","je vous remercie","super merci","bravo"],
+    keywords_ar: ["شكرا","شكراً","يعطيك العافية","مشكور","تسلم","يسلمو","ثانكس","الله يعطيك العافية","تسلم ايدك"],
+    answer_en: "🙏 You're very welcome! Happy to help anytime. Let me know if you have any other question about transport, logistics, or anything on the site!",
+    answer_fr: "🙏 Avec plaisir ! N'hésitez pas si vous avez d'autres questions sur le transport, la logistique ou le site.",
+    answer_ar: "🙏 العفو، أي وقت تحتاج فيه! لا تتردد تسألني عن أي شي يخص النقل أو اللوجستيك أو أي صفحة بالموقع.",
+  },
+  {
+    keywords_en: ["bye","goodbye","see you","see ya","gotta go","i'm leaving","take care","later"],
+    keywords_fr: ["au revoir","à bientôt","à plus","je m'en vais","bonne journée","bonne soirée"],
+    keywords_ar: ["مع السلامة","باي","تصبح على خير","الله وياك","إلى اللقاء","خلاص باي","سلامات","اشوفك بعدين"],
+    answer_en: "👋 Take care! Come back anytime you need help with transport or logistics — I'll be right here.",
+    answer_fr: "👋 Prenez soin de vous ! Revenez quand vous voulez pour toute question de transport ou logistique.",
+    answer_ar: "👋 مع السلامة! ارجعلي أي وقت تحتاج مساعدة بالنقل أو اللوجستيك، راح أكون هنا.",
+  },
+  {
+    keywords_en: ["who are you","what is your name","your name","are you a robot","are you ai","are you human"],
+    keywords_fr: ["qui es-tu","quel est ton nom","comment tu t'appelles","es-tu un robot","es-tu une ia"],
+    keywords_ar: ["مين انته","شو اسمك","ما اسمك","انته روبوت","انته ذكاء اصطناعي","مين حضرتك","منو انته"],
+    answer_en: "🤖 I'm **billemax**, the virtual assistant for Lazard Transport! I run on a built-in knowledge base to answer your questions about transport, logistics, pricing, documents, and more — instantly and for free.",
+    answer_fr: "🤖 Je suis **billemax**, l'assistant virtuel de Lazard Transport ! Je fonctionne avec une base de connaissances intégrée pour répondre à vos questions sur le transport, la logistique, les tarifs, les documents, et plus — instantanément et gratuitement.",
+    answer_ar: "🤖 أنا **billemax**، المساعد الافتراضي لشركة Lazard Transport! أشتغل بقاعدة معرفة مدمجة أجاوبك فيها على أسئلتك عن النقل واللوجستيك والأسعار والوثائق وغيرها — بشكل فوري ومجاني.",
+  },
+  {
+    keywords_en: ["joke","make me laugh","funny","tell me something funny"],
+    keywords_fr: ["blague","fais-moi rire","raconte une blague","quelque chose de drôle"],
+    keywords_ar: ["نكتة","ضحكني","قول نكتة","شي مضحك"],
+    answer_en: "😄 Why did the truck driver bring a ladder to work? Because he heard the delivery was **going up** in the world! 🚛📈\n\nOkay, back to business — need help with anything transport-related?",
+    answer_fr: "😄 Pourquoi le camionneur a-t-il apporté une échelle au travail ? Parce qu'il avait entendu que la livraison allait **monter** en flèche ! 🚛📈\n\nBon, revenons au sérieux — besoin d'aide sur un sujet transport ?",
+    answer_ar: "😄 ليش السائق حط سلم بالشاحنة؟ لأنه سمع إن التوصيل رايح **يطلع** فوق! 🚛📈\n\nطيب نرجع للجد، تحتاج مساعدة بشي يخص النقل؟",
+  },
+  {
+    keywords_en: ["how old are you","when were you created","who made you","who built you","who created you"],
+    keywords_fr: ["quel âge as-tu","quand as-tu été créé","qui t'a créé","qui t'a fait"],
+    keywords_ar: ["كم عمرك","متى انسويت","منو سواك","منو صنعك","شكد عمرك"],
+    answer_en: "🛠️ I was built as part of the Lazard Transport project to help visitors quickly with logistics questions. I don't have an age, but I'm always ready to help!",
+    answer_fr: "🛠️ J'ai été créé dans le cadre du projet Lazard Transport pour aider rapidement les visiteurs sur les questions de logistique. Je n'ai pas d'âge, mais je suis toujours prêt à aider !",
+    answer_ar: "🛠️ أنا اتسويت كجزء من مشروع Lazard Transport عشان أساعد الزوار بسرعة بأسئلة اللوجستيك. ماعندي عمر، بس دايماً جاهز أساعد!",
+  },
+  {
     keywords_en: ["hello","hi","hey","good morning","greet","start","help","what can"],
     keywords_fr: ["bonjour","salut","coucou","bonsoir","aide","comment","qu'est-ce"],
+    keywords_ar: ["مرحبا","هلا","السلام عليكم","صباح الخير","مساء الخير","اهلين","هاي","سلام"],
     answer_en: "👋 Hello! I'm **billemax**, your logistics assistant.\n\nAsk me about pricing, tracking, Incoterms, driver rules, pallets, documents, or type **quiz** to test your logistics knowledge!",
     answer_fr: "👋 Bonjour ! Je suis **billemax**, votre assistant logistique.\n\nPosez-moi des questions sur les tarifs, le suivi, les Incoterms, les règles chauffeur, les palettes, les documents, ou tapez **quiz** pour tester vos connaissances !",
     suggests: [
@@ -638,6 +688,160 @@ const KB: KBEntry[] = [
       { label_en: "📜 CMR", label_fr: "📜 CMR", query: "cmr consignment note" },
     ],
   },
+  {
+    keywords_en: ["eori", "economic operator", "registration number", "customs id"],
+    keywords_fr: ["eori", "opérateur économique", "numéro d'enregistrement", "identifiant douane"],
+    answer_en: "🆔 **EORI Number (Economic Operators Registration and Identification):**\n• Mandatory for any company importing/exporting outside the EU\n• Format: country code + unique number (e.g. FR12345678900017)\n• Free to obtain via your national customs authority\n• Required on all customs declarations (import/export)\n• Without it: shipment blocked at customs!\n\n💡 One EORI number is valid across the whole EU.",
+    answer_fr: "🆔 **Numéro EORI (Economic Operators Registration and Identification) :**\n• Obligatoire pour toute entreprise important/exportant hors UE\n• Format : code pays + numéro unique (ex. FR12345678900017)\n• Gratuit, à demander auprès de la douane nationale\n• Requis sur toutes les déclarations douanières\n• Sans EORI : marchandise bloquée en douane !\n\n💡 Un seul numéro EORI est valable dans toute l'UE.",
+    answer_ar: "🆔 **رقم EORI (رقم تسجيل وتعريف المشغل الاقتصادي):**\n• إلزامي لأي شركة تستورد أو تصدّر خارج الاتحاد الأوروبي\n• الصيغة: رمز الدولة + رقم فريد (مثال: FR12345678900017)\n• يُستخرج مجاناً من الجمارك الوطنية\n• مطلوب بكل الإقرارات الجمركية (استيراد/تصدير)\n• بدونه: الشحنة تتوقف بالجمارك!\n\n💡 رقم EORI واحد صالح بكل الاتحاد الأوروبي.",
+    suggests: [
+      { label_en: "🛃 Customs", label_fr: "🛃 Douanes", label_ar: "🛃 الجمارك", query: "customs duty clearance vat" },
+      { label_en: "📦 HS Code", label_fr: "📦 Code SH", label_ar: "📦 الرمز الجمركي", query: "hs code tariff classification" },
+    ],
+  },
+  {
+    keywords_en: ["bill of lading", "bl", "maritime document", "ocean bill"],
+    keywords_fr: ["connaissement", "bl", "document maritime", "bill of lading"],
+    answer_en: "🚢 **Bill of Lading (B/L):**\n• Issued by the shipping line/carrier for sea freight\n• 3 roles: proof of contract, receipt of goods, title of ownership\n• Types: Original (negotiable), Seaway Bill (non-negotiable, faster release), Master B/L vs House B/L\n• Needed to release goods at destination port\n• Consignee must present original (or telex release) to collect cargo",
+    answer_fr: "🚢 **Connaissement (Bill of Lading / B/L) :**\n• Émis par la compagnie maritime pour le fret maritime\n• 3 rôles : preuve du contrat, reçu de marchandise, titre de propriété\n• Types : Original (négociable), Seaway Bill (non négociable, remise rapide), Master B/L vs House B/L\n• Nécessaire pour retirer la marchandise au port de destination\n• Le destinataire doit présenter l'original (ou telex release) pour récupérer la cargaison",
+    answer_ar: "🚢 **سند الشحن البحري (Bill of Lading / B/L):**\n• تصدره شركة الملاحة للشحن البحري\n• 3 وظائف: إثبات العقد، إيصال استلام البضاعة، سند ملكية\n• الأنواع: أصلي (قابل للتداول)، Seaway Bill (غير قابل للتداول، تسليم أسرع)، Master B/L وHouse B/L\n• ضروري لاستلام البضاعة بميناء الوصول\n• على المستلم تقديم الأصل (أو telex release) لاستلام الحمولة",
+    suggests: [
+      { label_en: "✈️ AWB", label_fr: "✈️ LTA", label_ar: "✈️ بوليصة الشحن الجوي", query: "awb air waybill" },
+      { label_en: "🚢 Containers", label_fr: "🚢 Conteneurs", label_ar: "🚢 الحاويات", query: "container type 20ft 40ft" },
+    ],
+  },
+  {
+    keywords_en: ["awb", "air waybill", "air document", "airway bill"],
+    keywords_fr: ["lta", "lettre de transport aérien", "document aérien", "air waybill"],
+    answer_en: "✈️ **Air Waybill (AWB):**\n• Issued by the airline or freight forwarder for air freight\n• Non-negotiable (unlike a Bill of Lading) — not a title of ownership\n• 3 originals + several copies (for shipper, consignee, carrier)\n• Master AWB (airline→forwarder) vs House AWB (forwarder→shipper)\n• Contains: flight route, weight, dimensions, chargeable weight, Incoterm",
+    answer_fr: "✈️ **Lettre de Transport Aérien (LTA / AWB) :**\n• Émise par la compagnie aérienne ou le transitaire pour le fret aérien\n• Non négociable (contrairement au B/L) — pas un titre de propriété\n• 3 originaux + plusieurs copies (expéditeur, destinataire, transporteur)\n• Master AWB (compagnie→transitaire) vs House AWB (transitaire→expéditeur)\n• Contient : route du vol, poids, dimensions, poids taxable, Incoterm",
+    answer_ar: "✈️ **بوليصة الشحن الجوي (Air Waybill / AWB):**\n• تصدرها شركة الطيران أو وكيل الشحن للشحن الجوي\n• غير قابلة للتداول (بعكس سند الشحن البحري) — ليست سند ملكية\n• 3 نسخ أصلية + عدة نسخ (للمرسل، المستلم، الناقل)\n• Master AWB (شركة الطيران↔الوكيل) وHouse AWB (الوكيل↔المرسل)\n• تحتوي: مسار الرحلة، الوزن، الأبعاد، الوزن الخاضع للأجرة، الإنكوترمز",
+    suggests: [
+      { label_en: "🚢 Bill of Lading", label_fr: "🚢 Connaissement", label_ar: "🚢 سند الشحن البحري", query: "bill of lading maritime document" },
+      { label_en: "🚛 Transport modes", label_fr: "🚛 Modes transport", label_ar: "🚛 وسائل النقل", query: "type mode road sea air rail" },
+    ],
+  },
+  {
+    keywords_en: ["adr", "dangerous goods", "hazardous", "hazmat", "explosive", "chemical transport"],
+    keywords_fr: ["adr", "marchandises dangereuses", "matières dangereuses", "hazmat", "explosif", "transport chimique"],
+    answer_en: "☢️ **ADR — Dangerous Goods Transport (Europe):**\n• 9 hazard classes: explosives, gases, flammable liquids/solids, oxidizers, toxic, radioactive, corrosive, misc.\n• Driver needs **ADR certificate** (valid 5 years)\n• Vehicle: orange plates, placards, specific equipment (extinguisher, PPE)\n• Documents: transport document with UN number, safety data sheet\n• Quantities below certain thresholds may qualify for exemptions",
+    answer_fr: "☢️ **ADR — Transport de marchandises dangereuses (Europe) :**\n• 9 classes de danger : explosifs, gaz, liquides/solides inflammables, comburants, toxiques, radioactifs, corrosifs, divers\n• Le chauffeur doit avoir le **certificat ADR** (valable 5 ans)\n• Véhicule : plaques oranges, panneaux, équipement spécifique (extincteur, EPI)\n• Documents : document de transport avec numéro ONU, fiche de données de sécurité\n• Certaines quantités limitées peuvent être exemptées",
+    answer_ar: "☢️ **ADR — نقل البضائع الخطرة (أوروبا):**\n• 9 فئات خطر: متفجرات، غازات، سوائل/مواد صلبة قابلة للاشتعال، مؤكسدات، سامة، مشعة، أكالة، متنوعة\n• السائق يحتاج **شهادة ADR** (صالحة 5 سنوات)\n• المركبة: لوحات برتقالية، لافتات تحذيرية، معدات خاصة (طفاية، معدات وقاية)\n• الوثائق: مستند نقل برقم UN، وورقة بيانات السلامة\n• كميات معينة صغيرة قد تُعفى من بعض القواعد",
+    suggests: [
+      { label_en: "🚛 Driver rules", label_fr: "🚛 Règles chauffeur", label_ar: "🚛 قواعد السائق", query: "driver break rest eu regulation" },
+      { label_en: "📄 Documents", label_fr: "📄 Documents", label_ar: "📄 الوثائق", query: "document papers required invoice" },
+    ],
+  },
+  {
+    keywords_en: ["container", "20ft", "40ft", "reefer container", "teu", "box"],
+    keywords_fr: ["conteneur", "20 pieds", "40 pieds", "conteneur frigo", "evp", "boîte"],
+    answer_en: "🚢 **Container Types & Sizes:**\n• **20ft (1 TEU):** 33 m³ · ~28,000 kg payload\n• **40ft (2 TEU):** 67 m³ · ~28,600 kg payload\n• **40ft High Cube:** 76 m³ (extra 30cm height)\n• **Reefer:** refrigerated, -25°C to +25°C\n• **Open Top / Flat Rack:** oversized or heavy cargo\n\n💡 TEU = Twenty-foot Equivalent Unit, the standard measure of container capacity.",
+    answer_fr: "🚢 **Types et tailles de conteneurs :**\n• **20 pieds (1 EVP) :** 33 m³ · ~28 000 kg de charge\n• **40 pieds (2 EVP) :** 67 m³ · ~28 600 kg de charge\n• **40 pieds High Cube :** 76 m³ (30 cm de hauteur en plus)\n• **Reefer :** réfrigéré, -25°C à +25°C\n• **Open Top / Flat Rack :** marchandises hors gabarit ou lourdes\n\n💡 EVP = Équivalent Vingt Pieds, l'unité standard de capacité conteneur.",
+    answer_ar: "🚢 **أنواع وأحجام الحاويات:**\n• **20 قدم (1 TEU):** 33 م³ · حمولة ~28,000 كغ\n• **40 قدم (2 TEU):** 67 م³ · حمولة ~28,600 كغ\n• **40 قدم High Cube:** 76 م³ (ارتفاع إضافي 30 سم)\n• **Reefer (مبردة):** من -25°م إلى +25°م\n• **Open Top / Flat Rack:** للبضائع كبيرة الحجم أو الثقيلة\n\n💡 TEU = وحدة قياس مكافئة لحاوية 20 قدم، المقياس المعياري لسعة الحاويات.",
+    suggests: [
+      { label_en: "🚢 Bill of Lading", label_fr: "🚢 Connaissement", label_ar: "🚢 سند الشحن", query: "bill of lading maritime document" },
+      { label_en: "📐 Volume/LDM", label_fr: "📐 Volume/LDM", label_ar: "📐 الحجم", query: "volume loading metre ldm" },
+    ],
+  },
+  {
+    keywords_en: ["warehouse", "storage", "warehousing", "stock", "inventory", "depot"],
+    keywords_fr: ["entrepôt", "stockage", "entreposage", "stock", "inventaire", "dépôt"],
+    answer_en: "🏭 **Warehousing & Storage:**\n• **Public warehouse:** shared space, pay-per-use\n• **Contract warehouse:** dedicated space, fixed contract\n• **Cross-docking:** goods transferred directly truck-to-truck, minimal storage\n• **Bonded warehouse:** customs duties suspended until goods leave\n• Key metrics: storage cost/pallet/day, pick rate, inventory turnover",
+    answer_fr: "🏭 **Entreposage et stockage :**\n• **Entrepôt public :** espace partagé, paiement à l'usage\n• **Entrepôt sous contrat :** espace dédié, contrat fixe\n• **Cross-docking :** marchandise transférée directement camion à camion, stockage minimal\n• **Entrepôt sous douane :** droits de douane suspendus jusqu'à la sortie\n• Indicateurs clés : coût stockage/palette/jour, taux de préparation, rotation des stocks",
+    answer_ar: "🏭 **التخزين والمستودعات:**\n• **مستودع عام:** مساحة مشتركة، دفع حسب الاستخدام\n• **مستودع بعقد:** مساحة مخصصة، عقد ثابت\n• **Cross-docking:** نقل البضاعة مباشرة من شاحنة لشاحنة بأقل تخزين ممكن\n• **مستودع جمركي:** الرسوم الجمركية معلقة لحين خروج البضاعة\n• مؤشرات مهمة: تكلفة التخزين لكل منصة/يوم، معدل التجهيز، دوران المخزون",
+    suggests: [
+      { label_en: "📦 Pallet specs", label_fr: "📦 Palettes", label_ar: "📦 المنصات", query: "pallet eur size dimension" },
+      { label_en: "🔧 Logistics tools", label_fr: "🔧 Outils logistiques", label_ar: "🔧 أدوات لوجستية", query: "logistics tools calculator" },
+    ],
+  },
+  {
+    keywords_en: ["cold chain", "reefer", "refrigerated", "frozen", "temperature controlled", "perishable"],
+    keywords_fr: ["chaîne du froid", "frigorifique", "réfrigéré", "surgelé", "température dirigée", "périssable"],
+    answer_en: "❄️ **Cold Chain Transport:**\n• Temperature ranges: fresh (0–4°C), frozen (-18°C), deep frozen (-25°C)\n• Reefer trucks/containers maintain continuous temperature control\n• Mandatory temperature logging (data logger) for traceability\n• ATP Agreement: international standard for perishable goods transport\n• Any break in the cold chain risks product safety and can void insurance",
+    answer_fr: "❄️ **Transport en chaîne du froid :**\n• Plages de température : frais (0–4°C), surgelé (-18°C), grand froid (-25°C)\n• Camions/conteneurs frigorifiques : contrôle continu de température\n• Enregistrement obligatoire de température (data logger) pour traçabilité\n• Accord ATP : norme internationale pour le transport de denrées périssables\n• Toute rupture de la chaîne du froid met en danger le produit et peut annuler l'assurance",
+    answer_ar: "❄️ **نقل سلسلة التبريد (Cold Chain):**\n• نطاقات الحرارة: طازج (0–4°م)، مجمد (-18°م)، تجميد عميق (-25°م)\n• شاحنات/حاويات Reefer تحافظ على تبريد مستمر\n• تسجيل الحرارة إلزامي (data logger) لأغراض التتبع\n• اتفاقية ATP: المعيار الدولي لنقل البضائع القابلة للتلف\n• أي انقطاع بسلسلة التبريد يهدد سلامة المنتج وقد يُبطل التأمين",
+    suggests: [
+      { label_en: "🚢 Containers", label_fr: "🚢 Conteneurs", label_ar: "🚢 الحاويات", query: "container type 20ft 40ft reefer" },
+      { label_en: "🛡️ Insurance", label_fr: "🛡️ Assurance", label_ar: "🛡️ التأمين", query: "insurance assurance cover liability" },
+    ],
+  },
+  {
+    keywords_en: ["last mile", "final delivery", "home delivery", "urban delivery", "b2c delivery"],
+    keywords_fr: ["dernier kilomètre", "livraison finale", "livraison à domicile", "livraison urbaine", "livraison b2c"],
+    answer_en: "🏠 **Last Mile Delivery:**\n• The final leg from local hub to end customer — often the **costliest part** of the supply chain (up to 50% of total cost)\n• Challenges: urban traffic, parking, failed delivery attempts, returns\n• Solutions: parcel lockers, click & collect, micro-hubs, cargo bikes, electric vans\n• KPIs: on-time delivery rate, first-attempt success rate, cost per delivery",
+    answer_fr: "🏠 **Livraison du dernier kilomètre :**\n• Le tronçon final du hub local au client — souvent la **partie la plus coûteuse** de la chaîne (jusqu'à 50 % du coût total)\n• Défis : trafic urbain, stationnement, échecs de livraison, retours\n• Solutions : consignes colis, click & collect, micro-hubs, vélos cargo, camionnettes électriques\n• KPI : taux de livraison à l'heure, taux de réussite au 1er passage, coût par livraison",
+    answer_ar: "🏠 **توصيل الميل الأخير (Last Mile):**\n• المرحلة الأخيرة من المركز المحلي للعميل — غالباً **الأغلى** بسلسلة التوريد (حتى 50٪ من التكلفة الكلية)\n• التحديات: ازدحام المدن، مواقف السيارات، محاولات التوصيل الفاشلة، الإرجاعات\n• الحلول: خزائن الطرود، الاستلام من المتجر (click & collect)، مراكز صغيرة، دراجات الشحن، شاحنات كهربائية\n• مؤشرات الأداء: نسبة التوصيل بالوقت، نجاح أول محاولة، تكلفة كل توصيلة",
+    suggests: [
+      { label_en: "⏱️ Delivery times", label_fr: "⏱️ Délais", label_ar: "⏱️ أوقات التوصيل", query: "delivery time long duration" },
+      { label_en: "📍 Tracking", label_fr: "📍 Suivi", label_ar: "📍 التتبع", query: "track shipment where" },
+    ],
+  },
+  {
+    keywords_en: ["freight forwarder", "forwarder", "broker", "agent", "intermediary"],
+    keywords_fr: ["transitaire", "commissionnaire", "courtier", "agent", "intermédiaire"],
+    answer_en: "🤝 **Freight Forwarder Role:**\n• Acts as intermediary organizing transport on behalf of shipper (does not own vehicles/ships)\n• Handles: booking space, documentation, customs clearance, insurance, multimodal coordination\n• Two contract types: as **agent** (transparent commission) or **principal** (own contract, own liability)\n• Adds value especially for complex multimodal or international shipments",
+    answer_fr: "🤝 **Rôle du transitaire :**\n• Intermédiaire qui organise le transport pour l'expéditeur (ne possède pas de véhicules/navires)\n• Gère : réservation d'espace, documentation, dédouanement, assurance, coordination multimodale\n• Deux statuts : en tant qu'**agent** (commission transparente) ou **commissionnaire** (contrat propre, responsabilité propre)\n• Apporte une vraie valeur pour les envois multimodaux ou internationaux complexes",
+    answer_ar: "🤝 **دور وكيل الشحن (Freight Forwarder):**\n• وسيط ينظم عملية النقل نيابة عن الشاحن (لا يملك مركبات أو سفن)\n• يتكفل بـ: حجز المساحة، الوثائق، التخليص الجمركي، التأمين، تنسيق النقل متعدد الوسائط\n• نوعان من العقود: كـ**وكيل** (عمولة شفافة) أو كـ**أصيل** (عقد خاص به ومسؤولية خاصة به)\n• يضيف قيمة كبيرة خصوصاً بالشحنات الدولية أو متعددة الوسائط المعقدة",
+    suggests: [
+      { label_en: "📄 Documents", label_fr: "📄 Documents", label_ar: "📄 الوثائق", query: "document papers required invoice" },
+      { label_en: "🛃 Customs", label_fr: "🛃 Douanes", label_ar: "🛃 الجمارك", query: "customs duty clearance vat" },
+    ],
+  },
+  {
+    keywords_en: ["demurrage", "detention", "storage fee", "late return", "container fee"],
+    keywords_fr: ["surestaries", "immobilisation", "frais de stockage", "retard de retour", "frais conteneur"],
+    answer_en: "⏳ **Demurrage & Detention:**\n• **Demurrage:** fee for keeping a container at the port/terminal beyond free time\n• **Detention:** fee for keeping the container outside the port beyond free time (during unloading)\n• Free time typically **3–7 days** depending on port/carrier\n• Avoid by: fast unloading, planning customs clearance in advance, returning empty containers on time\n• Can add hundreds of euros/day if delayed!",
+    answer_fr: "⏳ **Surestaries (Demurrage) et immobilisation (Detention) :**\n• **Demurrage :** frais pour garder un conteneur au port/terminal au-delà du délai gratuit\n• **Detention :** frais pour garder le conteneur hors du port au-delà du délai gratuit (pendant déchargement)\n• Délai gratuit généralement **3 à 7 jours** selon port/transporteur\n• À éviter en : déchargeant vite, anticipant le dédouanement, retournant les conteneurs vides à temps\n• Peut coûter des centaines d'euros/jour en cas de retard !",
+    answer_ar: "⏳ **رسوم التأخير (Demurrage) والاحتجاز (Detention):**\n• **Demurrage:** رسوم إبقاء الحاوية بالميناء/المحطة بعد انتهاء الفترة المجانية\n• **Detention:** رسوم إبقاء الحاوية خارج الميناء بعد انتهاء الفترة المجانية (أثناء التفريغ)\n• الفترة المجانية عادة **3 إلى 7 أيام** حسب الميناء/الناقل\n• لتجنبها: تفريغ سريع، تجهيز التخليص الجمركي مسبقاً، إرجاع الحاويات الفارغة بالوقت\n• قد تكلف مئات اليوروات يومياً عند التأخير!",
+    suggests: [
+      { label_en: "🚢 Containers", label_fr: "🚢 Conteneurs", label_ar: "🚢 الحاويات", query: "container type 20ft 40ft" },
+      { label_en: "🛃 Customs", label_fr: "🛃 Douanes", label_ar: "🛃 الجمارك", query: "customs duty clearance vat" },
+    ],
+  },
+  {
+    keywords_en: ["hs code", "tariff code", "classification", "customs code", "nomenclature"],
+    keywords_fr: ["code sh", "code tarifaire", "classification", "code douanier", "nomenclature"],
+    answer_en: "📦 **HS Code (Harmonized System):**\n• 6-digit international code classifying every traded product\n• EU extends it to **8 digits (CN code)** / **10 digits (TARIC)** for precise duty rates\n• Determines: customs duty rate, VAT rate, need for licenses/certificates\n• Wrong classification → fines, delays, or shipment seizure\n• Look up codes via the EU TARIC database",
+    answer_fr: "📦 **Code SH (Système Harmonisé) :**\n• Code international à 6 chiffres classant chaque produit échangé\n• L'UE l'étend à **8 chiffres (code NC)** / **10 chiffres (TARIC)** pour les taux de droits précis\n• Détermine : taux de droit de douane, taux de TVA, besoin de licences/certificats\n• Mauvaise classification → amendes, retards, ou saisie de la marchandise\n• Rechercher les codes via la base TARIC de l'UE",
+    answer_ar: "📦 **الرمز الجمركي HS Code (النظام المنسق):**\n• رمز دولي من 6 أرقام يصنف كل منتج يُتاجر به\n• الاتحاد الأوروبي يوسعه إلى **8 أرقام (CN)** / **10 أرقام (TARIC)** لتحديد الرسوم بدقة\n• يحدد: نسبة الرسوم الجمركية، نسبة الضريبة، الحاجة لتراخيص/شهادات\n• التصنيف الخاطئ → غرامات، تأخير، أو حجز الشحنة\n• يمكن البحث عن الرموز بقاعدة بيانات TARIC الأوروبية",
+    suggests: [
+      { label_en: "🛃 Customs", label_fr: "🛃 Douanes", label_ar: "🛃 الجمارك", query: "customs duty clearance vat" },
+      { label_en: "🆔 EORI", label_fr: "🆔 EORI", label_ar: "🆔 رقم EORI", query: "eori economic operator registration" },
+    ],
+  },
+  {
+    keywords_en: ["packaging", "packing", "crate", "box", "wrap", "protect goods"],
+    keywords_fr: ["emballage", "colisage", "caisse", "carton", "film", "protéger marchandise"],
+    answer_en: "📦 **Packaging for Transport:**\n• Must protect against shock, vibration, moisture, and stacking pressure\n• Common types: cardboard boxes, wooden crates, stretch/shrink film, ISPM 15 treated pallets (for export — heat-treated or fumigated wood)\n• Labels required: handling symbols, weight, destination, hazard class if applicable\n• Good packaging reduces damage claims and insurance costs",
+    answer_fr: "📦 **Emballage pour le transport :**\n• Doit protéger contre les chocs, vibrations, humidité et pression d'empilage\n• Types courants : cartons, caisses en bois, film étirable/rétractable, palettes traitées ISPM 15 (export — bois traité thermiquement ou fumigé)\n• Étiquettes requises : pictogrammes de manutention, poids, destination, classe de danger le cas échéant\n• Un bon emballage réduit les réclamations pour dommages et les coûts d'assurance",
+    answer_ar: "📦 **التعبئة والتغليف للنقل:**\n• يجب أن تحمي من الصدمات والاهتزاز والرطوبة وضغط التكديس\n• الأنواع الشائعة: كراتين، صناديق خشبية، فيلم تغليف، منصات معالجة بمعيار ISPM 15 (للتصدير — خشب معالج حرارياً أو مُدخّن)\n• الملصقات المطلوبة: رموز المناولة، الوزن، الوجهة، فئة الخطر إن وجدت\n• التغليف الجيد يقلل مطالبات التلف وتكاليف التأمين",
+    suggests: [
+      { label_en: "📦 Pallet specs", label_fr: "📦 Palettes", label_ar: "📦 المنصات", query: "pallet eur size dimension" },
+      { label_en: "🛡️ Insurance", label_fr: "🛡️ Assurance", label_ar: "🛡️ التأمين", query: "insurance assurance cover liability" },
+    ],
+  },
+  {
+    keywords_en: ["co2", "emission", "environment", "carbon", "green logistics", "sustainability"],
+    keywords_fr: ["co2", "émission", "environnement", "carbone", "logistique verte", "durabilité"],
+    answer_en: "🌱 **CO₂ Emissions & Green Logistics:**\n• Road freight: ~62g CO₂/tonne-km · Sea: ~8g · Rail: ~22g · Air: ~600g+\n• EU CO2 standards push manufacturers toward lower-emission trucks\n• Strategies: modal shift (road→rail/sea), route optimization, full loads (avoid empty runs), electric/hydrogen trucks\n• Many shippers now require a **carbon footprint report** per shipment\n\n🔧 Use the **CO2 Calculator** in Logistics Tools!",
+    answer_fr: "🌱 **Émissions CO₂ et logistique verte :**\n• Routier : ~62g CO₂/tonne-km · Maritime : ~8g · Ferroviaire : ~22g · Aérien : ~600g+\n• Les normes CO2 de l'UE poussent vers des camions moins polluants\n• Stratégies : report modal (route→rail/mer), optimisation des trajets, chargements complets (éviter les trajets à vide), camions électriques/hydrogène\n• De nombreux chargeurs exigent désormais un **bilan carbone** par expédition\n\n🔧 Utilisez le **Calculateur CO2** dans Outils logistiques !",
+    answer_ar: "🌱 **انبعاثات CO₂ واللوجستيك الأخضر:**\n• الطريق البري: ~62غ CO₂/طن-كم · البحري: ~8غ · السكك الحديدية: ~22غ · الجوي: +600غ\n• معايير CO2 الأوروبية تدفع نحو شاحنات أقل انبعاثاً\n• الاستراتيجيات: التحول للسكك/البحر، تحسين المسارات، الحمولة الكاملة (تجنب الرحلات الفارغة)، شاحنات كهربائية/هيدروجينية\n• كثير من الشاحنين الآن يطلبون **تقرير بصمة كربونية** لكل شحنة\n\n🔧 استخدم **حاسبة CO2** بقسم الأدوات اللوجستية!",
+    suggests: [
+      { label_en: "🔧 Logistics tools", label_fr: "🔧 Outils logistiques", label_ar: "🔧 أدوات لوجستية", query: "logistics tools calculator" },
+      { label_en: "🚛 Transport modes", label_fr: "🚛 Modes transport", label_ar: "🚛 وسائل النقل", query: "type mode road sea air rail" },
+    ],
+  },
+  {
+    keywords_en: ["gps", "telematics", "real time", "iot", "geolocation", "fleet tracking"],
+    keywords_fr: ["gps", "télématique", "temps réel", "iot", "géolocalisation", "suivi de flotte"],
+    answer_en: "📡 **GPS & Fleet Telematics:**\n• Real-time vehicle geolocation for the shipper, dispatcher, and customer\n• Sensors monitor: speed, fuel level, temperature (reefer), door openings, driving behaviour\n• Benefits: better ETAs, theft prevention, proof of delivery, fuel optimization\n• Integrated with tachograph data for full compliance monitoring",
+    answer_fr: "📡 **GPS et télématique de flotte :**\n• Géolocalisation en temps réel pour l'expéditeur, le dispatcher et le client\n• Capteurs surveillant : vitesse, niveau de carburant, température (frigo), ouvertures de porte, comportement de conduite\n• Avantages : meilleures ETA, prévention du vol, preuve de livraison, optimisation carburant\n• Intégré aux données du tachygraphe pour un suivi complet de conformité",
+    answer_ar: "📡 **GPS وتقنيات تتبع الأسطول (Telematics):**\n• تحديد موقع المركبة لحظياً للشاحن ومسؤول التوزيع والعميل\n• المستشعرات تراقب: السرعة، مستوى الوقود، الحرارة (بالمبردة)، فتح الأبواب، سلوك القيادة\n• الفوائد: أوقات وصول أدق، منع السرقة، إثبات التسليم، تحسين استهلاك الوقود\n• يتكامل مع بيانات التاكوغراف لمراقبة كاملة للالتزام بالقوانين",
+    suggests: [
+      { label_en: "📍 Tracking", label_fr: "📍 Suivi", label_ar: "📍 التتبع", query: "track shipment where" },
+      { label_en: "📟 Tachograph", label_fr: "📟 Tachygraphe", label_ar: "📟 التاكوغراف", query: "tachograph digital card" },
+    ],
+  },
 ];
 
 const DEFAULT: Record<Lang, string> = {
@@ -649,13 +853,58 @@ const DEFAULT: Record<Lang, string> = {
 // ═══════════════════════════════════════════════════════════════════════════
 // KB RESPONSE ENGINE
 // ═══════════════════════════════════════════════════════════════════════════
+function normalizeForMatch(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function findKBEntry(message: string): KBEntry | null {
+  const text = normalizeForMatch(message);
+  let best: { score: number; entry: KBEntry | null } = { score: 0, entry: null };
+
+  for (const candidate of KB) {
+    const allKeywords = [
+      ...candidate.keywords_en,
+      ...candidate.keywords_fr,
+      ...(candidate.keywords_ar ?? []),
+    ];
+    const score = allKeywords.filter(k => text.includes(normalizeForMatch(k)) || message.includes(k)).length;
+    if (score > best.score) best = { score, entry: candidate };
+  }
+  return best.entry;
+}
+
+function kbAnswer(entry: KBEntry, lang: Lang): string {
+  if (lang === "ar" && entry.answer_ar) return entry.answer_ar;
+  if (lang === "fr") return entry.answer_fr;
+  if (lang === "ar") return entry.answer_en; // no ar translation yet, fall back to English
+  return entry.answer_en;
+}
+
 function getBotResponse(message: string, lang: Lang): { text: string; suggests?: SuggestItem[] } {
+  // 1. Casual conversation & broad transport/logistics topics (EN/FR/AR)
+  const kbEntry = findKBEntry(message);
+
+  // 2. Bac Pro exam-style calculation (numbers + formula in the message)
   const computed = getBacProCalculation(message);
   if (computed) return { text: computed };
 
+  // 3. French Bac Pro knowledge base (detailed exam definitions)
   const topic = findBacProKnowledge(message);
-  if (!topic) return { text: DEFAULT[lang] };
-  return { text: topic.answer };
+
+  // Prefer whichever source matched more specifically; KB covers casual talk
+  // and broad EN/FR/AR topics, bacProKnowledge covers detailed French exam terms.
+  if (kbEntry && topic) {
+    // If the message is in Arabic or English, the KB (multilingual) answer is more useful.
+    if (lang !== "fr") return { text: kbAnswer(kbEntry, lang), suggests: kbEntry.suggests };
+    return { text: topic.answer };
+  }
+  if (topic) return { text: topic.answer };
+  if (kbEntry) return { text: kbAnswer(kbEntry, lang), suggests: kbEntry.suggests };
+
+  return { text: DEFAULT[lang] };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1103,3 +1352,5 @@ export default function Chatbot() {
     </>
   );
 }
+
+
